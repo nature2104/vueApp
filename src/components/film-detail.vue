@@ -1,7 +1,7 @@
 <template>
-	<transition name="slide" mode="out-in"> 
+	<transition name="slide" mode="out-in">
 	<div id="detail-container">
-		<div class="film-detail" v-show="!loading">		
+		<div class="film-detail" v-show="!loading">
 			<div class="iconfont icon-back back" @click="goBack"></div>
 			<div class="film-detail__baseInfo" :style="{backgroundImage:'url('+bgPic+')'}">
 				<div id="shadow">
@@ -12,11 +12,11 @@
 						<h5 class="film-detail__baseInfo__message__title">{{title}}</h5>
 						<p class="film-detail__baseInfo__message__rank">
 							<span class="rating">{{averageRating}}</span>
-							<span class="iconfont icon-rank" v-for="i in 5" :class="{rankColor:averageRating>((i-0.5)*2)}"></span>	
+							<span class="iconfont icon-rank" v-for="i in 5" :class="{rankColor:averageRating>((i-0.5)*2)}"></span>
 						</p>
 						<p class="rating-number"><span>{{ratingCount}}人评价</span></p>
 					</div>
-				</div>			
+				</div>
 			</div>
 			<div class="film-detail__filmInfo">
 				<p>导演：{{filterData(directors)}}</p>
@@ -30,15 +30,14 @@
 			</div>
 			<div class="add-to-car">
 				<button>Vuex添加测试数据到购物车</button>
-			</div>	
+			</div>
 		</div>
 		<div id="loading" v-show="loading"><img src="../assets/transition.gif" alt=""></div>
 	</div>
-	</transition> 
+	</transition>
 </template>
 
 <script>
-import api from "../base/js/api.js"
 import Loading from './loading.vue'
 export default {
     name: 'detail',
@@ -69,19 +68,19 @@ export default {
  			this.$router.back();
  		},
  		 filterData(arr){
-	        var name="";         
+	        var name="";
 	        arr.forEach((item,i)=>{
 	            if(i==arr.length-1){
 	               name+=item.name
 	            }else{
 	               name+=item.name+" / "
-	            }            
+	            }
 	        })
-	        return name                         
+	        return name
 	    },
 	    fetchData () {
 	        this.loading = true;
-	        this.$ajax.get(`${api}subject/${this.$route.params.id}`)
+	        this.$http.get(`/api/subject/${this.$route.params.id}`)
 	        	.then((res)=>{
 	        		this.smallPic=res.data.images.small;
 	        		this.bgPic=res.data.images.large;
@@ -96,7 +95,7 @@ export default {
 	        		this.brief=res.data.summary;
 					this.loading =false;
 	        	})
-	       
+
 	    }
 	}
 };
@@ -115,8 +114,8 @@ export default {
 	.film-detail{
 		&__baseInfo{
 			height: 4rem;
-			position: relative;		
-			background:no-repeat top left/cover;	
+			position: relative;
+			background:no-repeat top left/cover;
 			#shadow{position: absolute;
 				top:0;left:0;
 				width:100%;height:100%;
@@ -193,7 +192,7 @@ export default {
 			padding:0.3rem 0.8rem;
 			color:$mainColor;
 			margin: 0 auto;
-		}		
+		}
 	}
 	#loading{
 		position: absolute;
@@ -202,12 +201,12 @@ export default {
 		transform:translate(-50%,-50%);
 		img{
 			width: 100%;
-			height: auto;	
+			height: auto;
 		}
 	}
 	.back{
 		@include fz(25px);
-		color: #fff;		
+		color: #fff;
 		padding: 0.111rem;
 		position: absolute;
 		top:0;
@@ -222,5 +221,5 @@ export default {
         transform:translate3d(-100%,0,0);
         transition:all 0.4s;
     }
-	
+
 </style>

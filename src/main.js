@@ -8,9 +8,21 @@ import VueTouch from 'vue-touch'
 Vue.use(VueTouch, {name: 'v-touch'});
 
 /*ajax请求*/
-import axios from 'axios'
+/*import axios from 'axios'
 Vue.use(axios);
-Vue.prototype.$ajax=axios;
+Vue.prototype.$http = axios.create({
+  baseURL: '',
+  timeout: 5000,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});*/
+
+import {post,get } from './util/http.js'
+Vue.prototype.$post=post;
+Vue.prototype.$get=get;
+
+
 
 /*图片懒加载*/
 import VueLazyload from 'vue-lazyload'

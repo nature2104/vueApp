@@ -1,24 +1,24 @@
 <template>
-    <div id="container">      
+    <div id="container">
         <swiperComponent :swiperOption="swiperOption"></swiperComponent>
-    
-        <filmComponent 
-            :el="filmType.topFilmData.scroller" 
-            :url="filmType.topFilmData.url" 
-            :type="filmType.topFilmData.type">         
+
+        <filmComponent
+            :el="filmType.topFilmData.scroller"
+            :url="filmType.topFilmData.url"
+            :type="filmType.topFilmData.type">
         </filmComponent>
 
-        <filmComponent 
-            :el="filmType.commingFilmData.scroller" 
+        <!--<filmComponent
+            :el="filmType.commingFilmData.scroller"
             :url="filmType.commingFilmData.url"
-            :type="filmType.commingFilmData.type">        
+            :type="filmType.commingFilmData.type">
         </filmComponent>
 
-        <filmComponent 
-            :el="filmType.theatersFilmData.scroller" 
+        <filmComponent
+            :el="filmType.theatersFilmData.scroller"
             :url="filmType.theatersFilmData.url"
-            :type="filmType.theatersFilmData.type">      
-        </filmComponent>
+            :type="filmType.theatersFilmData.type">
+        </filmComponent>-->
 
     </div>
 </template>
@@ -31,8 +31,8 @@ export default {
         return {
             swiperOption: {
                 pagination: '.swiper-pagination',
-                direction: 'horizontal',          
-            },     
+                direction: 'horizontal',
+            },
             filmType:{
                 topFilmData:{
                     scroller:"scroll-top250",
@@ -50,14 +50,14 @@ export default {
                     type:"正在热播"
                 }
             }
-            
+
         }
     },
     components:{
         swiperComponent,
         filmComponent
     }
-    
+
   }
 </script>
 
